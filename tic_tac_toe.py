@@ -77,6 +77,7 @@ while play:
     game = [[0 for i in range(game_size)] for i in range(game_size)]
 
     game_won = False
+    count = 0
     game, _ = game_board(game, just_display=True)
     player_choice = itertools.cycle([1, 2])
     while not game_won:
@@ -89,11 +90,19 @@ while play:
             row_choice = int(input("what row do you wanna play? (0, 1, 2): "))
             game, played = game_board(game, current_player, row_choice, column_choice)
         
-        if win(game):
+        count+=1
+        # if count == game_size^2:
+        #     print("The Game is tied.")
+
+
+        if win(game) or count == game_size**2:
+            print("hello, ", win(game), count==game_size**2)
             game_won = True
+            if not win(game):
+                print("The Game is tied.")
             again = input("Game over. Do you wanna play again?(y/n): ")
             if again.lower() == "y":
-                print("Restarting")
+                print("Restarting...")
             else:
-                print("Game shutting down")
+                print("Game shutting down...")
                 play = False
