@@ -13,25 +13,29 @@ def win(current_game):
 
     # Horizontal:
     for row in game:
-        return all_same(row, "horizontally")
+        if all_same(row, "horizontally"):
+            return True
 
     # Vertical:
     for col in range(len(game)):
         check = []
         for row in game:
             check.append(row[col])
-        return all_same(check, "vertically")
+        if all_same(check, "vertically"):
+            return True
 
     # Diagonal:
     diags = []
     for col, row in enumerate(reversed(range(len(game)))):
         diags.append(game[row][col])
-    return all_same(diags, "diagonally(/)")
+    if all_same(diags, "diagonally(/)"):
+        return True
 
     diags = []
     for idx in range(len(game)):
         diags.append(game[idx][idx])
-    return all_same(diags, "diagonally(\\)")
+    if all_same(diags, "diagonally(\\)"):
+        return True
 
     return False
 
